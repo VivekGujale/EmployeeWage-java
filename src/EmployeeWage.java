@@ -5,9 +5,12 @@ public class EmployeeWage {
         int isFullTime = 2;
         int empRatePerHr = 20;
         int numWorkingDays = 20;
-        int empHrs, empWage = 0, totalEmpWage = 0;
-        double empCheck = Math.floor(Math.random() * 10 % 3);
-        for (int day = 1; day <= 20; day++) {
+        int empHrs, totalEmpHrs = 0, empWage, totalEmpWage;
+        int MaxHrsInMonth = 100;
+        int totalWorkingDays = 0;
+        while (totalEmpHrs <= MaxHrsInMonth && totalWorkingDays <= numWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10 % 3);
             if (empCheck == isPartTime) {
                 empHrs = 8;
             } else if (empCheck == isFullTime) {
@@ -15,9 +18,10 @@ public class EmployeeWage {
             } else {
                 empHrs = 0;
             }
-            empWage = empRatePerHr * empHrs;
-            totalEmpWage = totalEmpWage + empWage;
+            totalEmpHrs = totalEmpHrs + empHrs;
+            System.out.println("Days:" + totalWorkingDays + "Emp Hrs:" + empHrs);
         }
-        System.out.println("Total Employee Wage for month =" + totalEmpWage);
+        totalEmpWage = totalEmpHrs * empRatePerHr;
+        System.out.println("Total Employee Wage for month = " + totalEmpWage);
     }
 }
